@@ -1,5 +1,6 @@
 package com.luizleiteoliveira.dynamo;
 
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 
 public class MainClass {
@@ -8,15 +9,20 @@ public class MainClass {
     public static void main(String[] args) {
 
 
-        DaxHelper daxHelper = new DaxHelper();
+        DynamoClientHelper dynamoClientHelper = new DynamoClientHelper();
         QueryIndexDax queryIndexDax = new QueryIndexDax();
 
-        DynamoDB daxClient = null;
         String tableName = null;
+        String accessKey = null;
+        String secretKey = null;
         if (args.length >= 1) {
-            daxClient = daxHelper.getDaxClient(args[0]);// pass endpoint on args to connect
-            tableName = args[1]; // table name as parameter
+            tableName = args[0]; // table name as parameter
+            accessKey = args[1];
+            secretKey = args[2];
         }
+        BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
+
+        DynamoDB dynamoDB = dynamoClientHelper.getDynamoClient(tableName, awsCredentials);
 
         long start = System.currentTimeMillis();
         String json = "{\n" +
@@ -27,17 +33,17 @@ public class MainClass {
                 "}";
 
 
-        assert daxClient != null;
+        assert dynamoDB != null;
         System.out.println("Verificando itens para ucode ..... AE82E1F33FEDF83D6E9A9ED9F30673C7");
-        int i = queryIndexDax.queryIndexCount(daxClient, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
-        System.out.println("Quantidade de itens = "+ i);
+//        int i = queryIndexDax.queryIndexCount(dynamoDB, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
+//        System.out.println("Quantidade de itens = "+ i);
         System.out.println("Populando itens ..... ");
-        daxHelper.writeData(tableName, daxClient, json);
-        int j = queryIndexDax.queryIndexCount(daxClient, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
-        while (j< i+1) {
-            j = queryIndexDax.queryIndexCount(daxClient, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
-            System.out.println("Quantidade de itens = "+ j);
-        }
+        dynamoClientHelper.writeData(tableName, dynamoDB, json);
+//        int j = queryIndexDax.queryIndexCount(dynamoDB, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
+//        while (j< i+1) {
+//            j = queryIndexDax.queryIndexCount(dynamoDB, tableName, "ucode_index", "AE82E1F33FEDF83D6E9A9ED9F30673C7");
+//            System.out.println("Quantidade de itens = "+ j);
+//        }
         System.out.println("Time in milisseconds: "+ (System.currentTimeMillis() - start));
 
 

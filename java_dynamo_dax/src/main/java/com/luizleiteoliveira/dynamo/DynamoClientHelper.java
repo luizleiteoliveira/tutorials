@@ -1,12 +1,17 @@
 package com.luizleiteoliveira.dynamo;
 
 import com.amazon.dax.client.dynamodbv2.AmazonDaxClientBuilder;
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-public class DaxHelper {
+public class DynamoClientHelper {
 
     private static final String region = "us-east-1";
 
@@ -15,6 +20,12 @@ public class DaxHelper {
         AmazonDaxClientBuilder daxClientBuilder = AmazonDaxClientBuilder.standard();
         daxClientBuilder.withRegion(region).withEndpointConfiguration(daxEndpoint);
         AmazonDynamoDB client = daxClientBuilder.build();
+        return new DynamoDB(client);
+    }
+
+    DynamoDB getDynamoClient(String tableName, BasicAWSCredentials awsCredentialsProvider) {
+        AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(region)
+                .withCredentials(new AWSStaticCredentialsProvider(awsCredentialsProvider)).build();
         return new DynamoDB(client);
     }
 
