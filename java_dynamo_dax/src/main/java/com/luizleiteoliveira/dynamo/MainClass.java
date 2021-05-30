@@ -10,7 +10,6 @@ public class MainClass {
 
 
         DynamoClientHelper dynamoClientHelper = new DynamoClientHelper();
-        QueryIndexDax queryIndexDax = new QueryIndexDax();
 
         String tableName = null;
         String accessKey = null;
