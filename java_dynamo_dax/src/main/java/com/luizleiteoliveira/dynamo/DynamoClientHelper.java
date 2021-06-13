@@ -41,21 +41,15 @@ public class DynamoClientHelper {
         }
     }
 
-    private static void retrieveItem(String tableName, DynamoDB client, Long id) {
+    public Item retrieveItem(String tableName, DynamoDB client, Long id) {
         Table table = client.getTable(tableName);
 
-        try {
+        Item item = table.getItem("id", id);
 
-            Item item = table.getItem("id", id);
+        System.out.println("Printing item after retrieving it....");
+        System.out.println(item.toJSONPretty());
 
-            System.out.println("Printing item after retrieving it....");
-            System.out.println(item.toJSONPretty());
-
-        }
-        catch (Exception e) {
-            System.err.println("GetItem failed.");
-            System.err.println(e.getMessage());
-        }
+        return item;
 
     }
 
