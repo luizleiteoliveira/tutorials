@@ -43,12 +43,7 @@ public class DynamoClientHelper {
 
     public Item retrieveItem(String tableName, DynamoDB client, Long id) {
         Table table = client.getTable(tableName);
-
         Item item = table.getItem("id", id);
-
-        System.out.println("Printing item after retrieving it....");
-        System.out.println(item.toJSONPretty());
-
         return item;
 
     }
