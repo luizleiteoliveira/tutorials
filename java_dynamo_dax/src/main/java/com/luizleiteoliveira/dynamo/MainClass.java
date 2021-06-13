@@ -14,10 +14,14 @@ public class MainClass {
         String tableName = null;
         String accessKey = null;
         String secretKey = null;
+        String daxEndpoint = null;
         if (args.length >= 1) {
             tableName = args[0]; // table name as parameter
             accessKey = args[1];
             secretKey = args[2];
+            if (args.length > 3) {
+                daxEndpoint = args[3];
+            }
         }
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
 
@@ -25,7 +29,7 @@ public class MainClass {
 
         long start = System.currentTimeMillis();
         String json = "{\n" +
-                "  \"context\": \"bankingData\",\n" +
+                "  \"context\": \"dataTest\",\n" +
                 "  \"data\": \"teste=\",\n" +
                 "  \"id\": \"1234"+start+"\",\n" +
                 "  \"ucode\": \"AE82E1F33FEDF83D6E9A9ED9F30673C7\"\n" +
