@@ -41,6 +41,18 @@ public class DynamoClientHelper {
         }
     }
 
+    void deleteItem(String tableName, DynamoDB client, Long id) {
+        Table table = client.getTable(tableName);
+        System.out.println("DeleteData data to the table..."+ tableName);
+        PrimaryKey primaryKey = new PrimaryKey("id", id);
+        try {
+            table.deleteItem(primaryKey);
+        } catch (Exception e) {
+            System.err.println("Unable to write item:");
+            e.printStackTrace();
+        }
+    }
+
     public Item retrieveItem(String tableName, DynamoDB client, Long id) {
         Table table = client.getTable(tableName);
         Item item = table.getItem("id", id);
