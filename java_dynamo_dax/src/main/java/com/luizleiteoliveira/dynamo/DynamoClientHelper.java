@@ -23,7 +23,7 @@ public class DynamoClientHelper {
         return new DynamoDB(client);
     }
 
-    DynamoDB getDynamoClient(String tableName, BasicAWSCredentials awsCredentialsProvider) {
+    DynamoDB getDynamoClient(BasicAWSCredentials awsCredentialsProvider) {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentialsProvider)).build();
         return new DynamoDB(client);

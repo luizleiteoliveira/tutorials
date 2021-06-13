@@ -21,7 +21,7 @@ public class MainClass {
         }
         BasicAWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
 
-        DynamoDB dynamoDB = dynamoClientHelper.getDynamoClient(tableName, awsCredentials);
+        DynamoDB dynamoDB = dynamoClientHelper.getDynamoClient(awsCredentials);
 
         long start = System.currentTimeMillis();
         String json = "{\n" +
