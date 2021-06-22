@@ -3,6 +3,7 @@ package com.luizleiteoliveira.tutorials.service;
 import com.luizleiteoliveira.tutorials.domain.Book;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 @ApplicationScoped
 public class BookService {
@@ -24,5 +25,14 @@ public class BookService {
             book.persist();
         }
         return book;
+    }
+
+    public List<Book> findAllBooks() {
+        List<Book> allBooks = Book.listAll();
+        return allBooks;
+    }
+
+    public void deleteAllBooks() {
+        Book.deleteAll();
     }
 }

@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 @Path("/books")
 public class BookResource {
 
@@ -23,22 +24,19 @@ public class BookResource {
 
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
     public Book createBookWithParameters(Book bookReceived) {
         return bookService.createOrUpdateBook(bookReceived);
     }
 
     @GET
     @Path("/findAll")
-    @Produces(MediaType.APPLICATION_JSON)
     public List<Book> listAllBooks() {
-        List<Book> allBooks = Book.listAll();
-        return allBooks;
+        return bookService.findAllBooks();
     }
 
     @DELETE
     @Path("/deleteAll")
     public void deleteAll() {
-        Book.deleteAll();
+        bookService.deleteAllBooks();
     }
 }
