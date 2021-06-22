@@ -2,6 +2,9 @@ package com.luizleiteoliveira.tutorials.service;
 
 import com.luizleiteoliveira.tutorials.domain.Book;
 
+import javax.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class BookService {
 
 

@@ -8,11 +8,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+@Consumes(MediaType.APPLICATION_JSON)
 @Path("/books")
 public class BookResource {
 
     @Inject
-    private BookService bookService;
+    BookService bookService;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
