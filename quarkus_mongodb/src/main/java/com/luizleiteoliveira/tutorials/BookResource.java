@@ -17,11 +17,9 @@ public class BookResource {
     BookService bookService;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
+    public Book findBookByName(String name) {
+        return bookService.findBookByName(name);
     }
-
 
     @POST
     public Book createBookWithParameters(Book bookReceived) {

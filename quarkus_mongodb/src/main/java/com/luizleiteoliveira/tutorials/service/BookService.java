@@ -35,4 +35,8 @@ public class BookService {
     public void deleteAllBooks() {
         Book.deleteAll();
     }
+
+    public Book findBookByName(String name) {
+        return Book.findByName(name);
+    }
 }
