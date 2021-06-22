@@ -18,19 +18,19 @@ public class BookResource {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Book createBookWithParameters(@QueryParam("name") String name, @QueryParam("author") String author, @QueryParam("year") Integer year) {
-        Book book = Book.findByName(name);
+    public Book createBookWithParameters(Book bookReceived) {
+        Book book = Book.findByName(bookReceived.name);
 
         if ( book != null) {
-            book.author = author;
-            book.name = name;
-            book.yearPublication = year;
+            book.author = bookReceived.author;
+            book.name = bookReceived.name;
+            book.yearPublication = bookReceived.yearPublication;
             book.update();
         } else {
             book = new Book();
-            book.author = author;
-            book.name = name;
-            book.yearPublication = year;
+            book.author = bookReceived.author;
+            book.name = bookReceived.name;
+            book.yearPublication = bookReceived.yearPublication;
             book.persist();
         }
         return book;
