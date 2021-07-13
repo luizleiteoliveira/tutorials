@@ -15,7 +15,7 @@ class ApiGatewayHandler: RequestStreamHandler {
         private val LOGGER = getLogger()
     }
 
-    override fun handleRequest(inputStream: InputStream?, outputStream: OutputStream?, context: Context?) {
+    override fun handleRequest(inputStream: InputStream?, outputStream: OutputStream?, context: Context?): String {
         val newLine = System.getProperty("line.separator")
         val result = StringBuilder()
         BufferedReader(InputStreamReader(inputStream)).use { reader ->
@@ -27,6 +27,6 @@ class ApiGatewayHandler: RequestStreamHandler {
             }
         }
         LOGGER.info(result.toString())
-
+        return "OK"
     }
 }
