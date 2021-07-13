@@ -2,11 +2,8 @@ package com.luizleiteoliveira.tutorials
 
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.io.OutputStream
 import org.kxtra.slf4j.getLogger
+import java.io.*
 
 
 class ApiGatewayHandler: RequestStreamHandler {
@@ -15,7 +12,7 @@ class ApiGatewayHandler: RequestStreamHandler {
         private val LOGGER = getLogger()
     }
 
-    override fun handleRequest(inputStream: InputStream?, outputStream: OutputStream?, context: Context?): String {
+    override fun handleRequest(inputStream: InputStream?, outputStream: OutputStream?, context: Context?) {
         val newLine = System.getProperty("line.separator")
         val result = StringBuilder()
         BufferedReader(InputStreamReader(inputStream)).use { reader ->
@@ -27,6 +24,8 @@ class ApiGatewayHandler: RequestStreamHandler {
             }
         }
         LOGGER.info(result.toString())
-        return "OK"
+        val writer = OutputStreamWriter(outputStream, "UTF-8")
+        writer.write(result.toString())
+        writer.close()
     }
 }
