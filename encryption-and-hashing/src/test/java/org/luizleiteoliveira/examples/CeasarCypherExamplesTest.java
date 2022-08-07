@@ -12,7 +12,16 @@ class CeasarCypherExamplesTest {
         String plainText = "A";
         String encryptResult = ceasarCypherExamples.encrypt(plainText, 1);
         Assertions.assertEquals("B", encryptResult);
+        plainText = "Z";
+        encryptResult = ceasarCypherExamples.encrypt(plainText, 1);
+        Assertions.assertEquals(" ", encryptResult);
+    }
 
+    @Test
+    public void testWordEncrypt() {
+        String plainText = "AMOR";
+        String encryptResult = ceasarCypherExamples.encrypt(plainText, 1);
+        Assertions.assertEquals("BNPS", encryptResult);
     }
 
 }
