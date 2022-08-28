@@ -13,4 +13,17 @@ public class CeasarCypherExamples {
         }
         return encryptText.toString();
     }
+
+    public String decrypt(String cypherText, int key){
+
+        StringBuilder decryptText = new StringBuilder();
+
+        for (int charPosition = 0; charPosition < cypherText.length(); charPosition++ ) {
+            char currentChar = cypherText.charAt(charPosition);
+            decryptText.append(ALPHABETH.charAt(Math.floorMod(ALPHABETH.indexOf(currentChar) - key, ALPHABETH.length())));
+        }
+
+        return decryptText.toString();
+
+    }
 }
