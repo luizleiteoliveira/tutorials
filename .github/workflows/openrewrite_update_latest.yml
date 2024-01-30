@@ -1,10 +1,10 @@
 name: Runs open rewrite
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
+    secrets:
+      SOME_SECRET:
+        required: false
 
 jobs:
   build:
