@@ -32,6 +32,7 @@ jobs:
         run: |
           if grep -q "\[WARNING\] These recipes would make changes to" mvnResult.txt; then
             echo "::warning ::Changes to be made"
+            exit 1
           else
             echo "Project is on right track and fully updated"
           fi
