@@ -27,9 +27,7 @@ jobs:
           ls
       - name: Build with Maven
         id: mvn-dryRun
-        run: mvn org.openrewrite.maven:rewrite-maven-plugin:5.21.0:dryRun \ 
-            -DactiveRecipes=com.luizleiteoliveira.BestModuleRecipe \
-            -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-spring:RELEASE > mvnResult.txt 2>&1
+        run: mvn org.openrewrite.maven:rewrite-maven-plugin:5.21.0:dryRun -DactiveRecipes=com.luizleiteoliveira.BestModuleRecipe -Drewrite.recipeArtifactCoordinates=org.openrewrite.recipe:rewrite-spring:RELEASE > mvnResult.txt 2>&1
       - name: Validar se tem atualizaçoes a serem feitas
         run: |
           if grep -q "\[WARNING\] These recipes would make changes to" mvnResult.txt; then
