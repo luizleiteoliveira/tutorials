@@ -26,10 +26,11 @@ jobs:
         run: |
           ls
       - name: Build with Maven
+        id: mvn-dryRun
         run: mvn rewrite:dryRun
       - name: Validar se tem atualizaçoes a serem feitas
         run: |
-          if echo "$OUTPUT" | grep -q "[WARNING] These recipes would make changes to"; then
+          if echo ${{ steps.mvn-dryRun.outputs.stdout }} | grep -q "[WARNING] These recipes would make changes to"; then
             echo "::warning ::Changes to be made"
           else
             echo "Project is on right track and fully updated"
