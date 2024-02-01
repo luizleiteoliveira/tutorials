@@ -27,3 +27,10 @@ jobs:
           ls
       - name: Build with Maven
         run: mvn rewrite:dryRun
+      - name: Validar se tem atualizaçoes a serem feitas
+        run: |
+         if grep -q "[WARNING] These recipes would make changes to" target/*.txt; then
+           echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+         else
+           echo "Project is on right track and fully updated"
+         fi

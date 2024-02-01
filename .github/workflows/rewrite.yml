@@ -1,6 +1,6 @@
 ---
 type: specs.openrewrite.org/v1beta/recipe
-name: com.yourorg.UpgradeDependencyVersionExample
+name: com.luizleiteoliveira.BestModuleReceipt
 displayName: Upgrade Maven dependency version example
 recipeList:
   - org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_2
