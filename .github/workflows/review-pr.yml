@@ -21,7 +21,7 @@ jobs:
           LANGUAGE: Portuguese
           OPENAI_API_ENDPOINT: https://api.openai.com/v1
           MODEL: gpt-3.5-turbo # https://platform.openai.com/docs/models
-          PROMPT: Give a score for the new code between 0 and 100  # example: Please check if there are any confusions or irregularities in the following code diff:
+          PROMPT: you add all considerations add some score for the new code between 0 and 100 and make it clear that this is a score # example: Please check if there are any confusions or irregularities in the following code diff:
           top_p: 1 # https://platform.openai.com/docs/api-reference/chat/create#chat/create-top_p
           temperature: 1 # https://platform.openai.com/docs/api-reference/chat/create#chat/create-temperature
           max_tokens: 3000
