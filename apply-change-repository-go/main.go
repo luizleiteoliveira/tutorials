@@ -17,10 +17,8 @@ func main() {
 	}
 	defer file.Close()
 
-	// This is a compilation error on purpose to demonstrate behavior
-	thisWillNotCompile := "This line will cause a compile error"
 	// Leitor de scanner para ler o arquivo linha por linha
-	scanner := bufio.fdsa(file)
+	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		repoURL := strings.TrimSpace(scanner.Text())
 		if repoURL == "" {
