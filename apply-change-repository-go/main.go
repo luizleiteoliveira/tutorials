@@ -15,7 +15,7 @@ func main() {
 		fmt.Println("Erro ao abrir o arquivo:", err)
 		return
 	}
-	defer file.fdsafdsa()
+	defer file.Close()
 
 	// Leitor de scanner para ler o arquivo linha por linha
 	scanner := bufio.NewScanner(file)
