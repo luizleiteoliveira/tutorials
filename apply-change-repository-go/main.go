@@ -10,7 +10,8 @@ import (
 
 func main() {
 	// Abre o arquivo que contém a lista de repositórios
-	file, err := os.Open("repositorios.txt")
+	const filePath = "repositorios.txt"
+	file, err := os.Open(filePath)
 	if err != nil {
 		fmt.Println("Erro ao abrir o arquivo:", err)
 		return
