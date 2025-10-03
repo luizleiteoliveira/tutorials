@@ -4,5 +4,5 @@
       uri: "direct:webhook"
       steps:
         - to:
-            uri: "https://webhook.site/f9a371a4-944d-43f8-83ee-e058d0615f89"
+            uri: "http://webhook.site/f9a371a4-944d-43f8-83ee-e058d0615f89?httpMethod=GET"
         - log: "Response: ${body}"
