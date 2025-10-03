@@ -22,7 +22,7 @@ public class AuthResource {
         }
         
         String response = producerTemplate.requestBodyAndHeader(
-            "https://webhook.site/f9a371a4-944d-43f8-83ee-e058d0615f89",
+            "direct:webhook",
             null,
             "Authorization",
             authorization,
