@@ -1,0 +1,7 @@
+- route:
+    from:
+      uri: "timer:webhook?period=30000"
+      steps:
+        - to:
+            uri: "https://webhook.site/f9a371a4-944d-43f8-83ee-e058d0615f89"
+        - log: "Response: ${body}"
