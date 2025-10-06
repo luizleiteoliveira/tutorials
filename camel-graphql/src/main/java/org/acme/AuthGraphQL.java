@@ -12,17 +12,19 @@ public class AuthGraphQL {
     ProducerTemplate producerTemplate;
 
     @Query
-    public String auth(String authorization) {
+    public ReturnGraphQL auth(String authorization, String meuNome) {
         if (authorization == null) {
-            return "No authorization token";
+            return null;
         }
-
-        return producerTemplate.requestBodyAndHeader(
-            "direct:webhook",
-            null,
-            "Authorization",
-            authorization,
-            String.class
+        String retorno = producerTemplate.requestBodyAndHeader(
+                "direct:webhook",
+                null,
+                "Authorization",
+                authorization,
+                String.class
         );
+        ReturnGraphQL returnGraphQL = new ReturnGraphQL(meuNome, retorno, authorization, "Bearer");
+        return returnGraphQL;
     }
 }
+
