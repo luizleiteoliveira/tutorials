@@ -18,29 +18,31 @@ class ProductControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void shouldCreateProduct() throws Exception {
-        mockMvc.perform(post("/products")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"name":"Notebook","price":2999.90}
-                                """))
+    void shouldReturnInitialProducts() throws Exception {
+        mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").isNumber())
-                .andExpect(jsonPath("$.name").value("Notebook"))
-                .andExpect(jsonPath("$.price").value(2999.90));
+                .andExpect(jsonPath("$.length()").value(5))
+                .andExpect(jsonPath("$[0].name").value("Notebook"));
     }
 
     @Test
     void shouldFindProductById() throws Exception {
-        mockMvc.perform(post("/products")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {"name":"Mouse","price":99.90}
-                        """));
-
         mockMvc.perform(get("/products/1"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Mouse"));
+                .andExpect(jsonPath("$.name").value("Notebook"))
+                .andExpect(jsonPath("$.price").value(4599.90));
+    }
+
+    @Test
+    void shouldCreateProduct() throws Exception {
+        mockMvc.perform(post("/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"name":"SSD 1TB","price":499.90}
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.name").value("SSD 1TB"));
     }
 
     @Test
