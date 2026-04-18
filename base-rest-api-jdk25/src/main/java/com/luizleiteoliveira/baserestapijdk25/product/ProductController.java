@@ -3,6 +3,8 @@ package com.luizleiteoliveira.baserestapijdk25.product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -11,6 +13,11 @@ public class ProductController {
 
     public ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @GetMapping
+    public List<Product> findAll() {
+        return productService.findAll();
     }
 
     @GetMapping("/{id}")
