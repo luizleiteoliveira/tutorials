@@ -1,6 +1,22 @@
 spring:
   application:
     name: base-rest-api-jdk25
+  datasource:
+    url: jdbc:h2:mem:productsdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  h2:
+    console:
+      enabled: true
   cache:
     type: caffeine
     caffeine:
